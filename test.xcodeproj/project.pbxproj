@@ -41,6 +41,8 @@
 		A10C6FAE24A40EC700347DE3 /* StringUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10C6FAC24A40EC700347DE3 /* StringUtility.swift */; };
 		A10C6FB024A417B600347DE3 /* validJSONMissingKeys.json in Resources */ = {isa = PBXBuildFile; fileRef = A10C6FAF24A417B600347DE3 /* validJSONMissingKeys.json */; };
 		A10C6FB124A417B600347DE3 /* validJSONMissingKeys.json in Resources */ = {isa = PBXBuildFile; fileRef = A10C6FAF24A417B600347DE3 /* validJSONMissingKeys.json */; };
+		A10C700424A41D7800347DE3 /* SVGKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10C6FF924A41CD100347DE3 /* SVGKit.framework */; };
+		A10C700524A41D7800347DE3 /* SVGKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A10C6FF924A41CD100347DE3 /* SVGKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +125,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				A10C700524A41D7800347DE3 /* SVGKit.framework in Embed Frameworks */,
 				A10C6F8224A31E0D00347DE3 /* CocoaLumberjack.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -164,6 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A10C700424A41D7800347DE3 /* SVGKit.framework in Frameworks */,
 				A10C6F8124A31E0D00347DE3 /* CocoaLumberjack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
