@@ -19,16 +19,45 @@ class testTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testValidJSON() throws {
+        var path = Bundle.main.path(forResource: "validJSON", ofType: "json")!
+        do {
+            let jsonData = try String(contentsOfFile: path, encoding: .utf8).data(using: .utf8)!
+            XCTAssertNoThrow(try JSONDecoder().decode([Country].self, from: jsonData))
         }
+        path = Bundle.main.path(forResource: "validJSONMissingKeys", ofType: "json")!
+        do {
+            let jsonData = try String(contentsOfFile: path, encoding: .utf8).data(using: .utf8)!
+            XCTAssertNoThrow(try JSONDecoder().decode([Country].self, from: jsonData))
+        }
+    }
+    func testInvalidJSON() throws {
+        let path = Bundle.main.path(forResource: "invalidJSON", ofType: "json")!
+        do {
+            let jsonData = try String(contentsOfFile: path, encoding: .utf8).data(using: .utf8)!
+            XCTAssertThrowsError(try JSONDecoder().decode([Country].self, from: jsonData))
+        }
+    }
+    func testStringUtility() throws {
+        var str = "String 1"
+        let strList = ["aaa","bbb","ccc","ddd"]
+        str.appendStringifAvailable(str: str, toAppend: "String 2", preStr: " - Pre - ", endLine: " - Post")
+        XCTAssert(str == "String 1 - Pre - String 2 - Post")
+        str = "String 1"
+        str.appendStringifAvailable(str: str, toAppend: "String 2", endLine: " - Post")
+        XCTAssert(str == "String 1String 2 - Post")
+        str = "String 1"
+        str.appendStringifAvailable(str: str, toAppend: "String 2")
+        XCTAssert(str == "String 1String 2")
+        str = "String 1"
+        str.appendStringList(str: str, toAppend: strList, preStr: " - Pre - ", endLine: " - Post")
+        XCTAssert(str == "String 1 - Pre - aaa, bbb, ccc, ddd - Post")
+        str = "String 1"
+        str.appendStringList(str: str, toAppend: strList, endLine: " - Post")
+        XCTAssert(str == "String 1aaa, bbb, ccc, ddd - Post")
+        str = "String 1"
+        str.appendStringList(str: str, toAppend: strList)
+        XCTAssert(str == "String 1aaa, bbb, ccc, ddd")
     }
 
 }
